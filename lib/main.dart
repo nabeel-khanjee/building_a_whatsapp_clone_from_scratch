@@ -1,18 +1,24 @@
 import 'package:building_a_whatsapp_clone_from_scratch/whatsapp_home.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
+
+Future<Null> main() async {
+  cameras = await availableCameras();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: new WhatsAppHomePage(),
+      home: new WhatsAppHomePage(cameras),
       title: "WhatsApp",
       theme: new ThemeData(
           primaryColor: new Color(0xff075E54),
           accentColor: new Color(0xff25D366)),
-          debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

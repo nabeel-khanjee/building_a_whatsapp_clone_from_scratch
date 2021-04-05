@@ -5,6 +5,9 @@ import 'package:building_a_whatsapp_clone_from_scratch/pages/status_screen.dart'
 import 'package:flutter/material.dart';
 
 class WhatsAppHomePage extends StatefulWidget {
+  var cameras;
+  WhatsAppHomePage(this.cameras);
+
   @override
   _WhatsAppHomePageState createState() => _WhatsAppHomePageState();
 }
@@ -24,7 +27,6 @@ class _WhatsAppHomePageState extends State<WhatsAppHomePage>
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        
         title: new Text("WhatsApp"),
         elevation: 0.7,
         bottom: new TabBar(
@@ -45,8 +47,8 @@ class _WhatsAppHomePageState extends State<WhatsAppHomePage>
       ),
       body: new TabBarView(
         controller: tabController,
-        children: [
-          new CameraScreen(),
+        children:<Widget> [
+          new CameraScreen(widget.cameras),
           new ChatScreen(),
           new StatusScreen(),
           new CallsScreen(),
@@ -55,7 +57,10 @@ class _WhatsAppHomePageState extends State<WhatsAppHomePage>
       floatingActionButton: new FloatingActionButton(
         backgroundColor: Theme.of(context).accentColor,
         onPressed: () => print("open chats"),
-        child: new Icon(Icons.message,color: Colors.white,),
+        child: new Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
       ),
     );
   }
